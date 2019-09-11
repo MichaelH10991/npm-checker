@@ -1,0 +1,17 @@
+<div>the index</div>
+<input id="search" type="text" />
+<button id="submit" type="submit"></button>
+
+<script>
+
+    document.getElementById("submit").onclick = async () => {
+        let input = await document.getElementById("search").value
+        console.log(input)
+        let req = await fetch(`/api/registry/${input}`, {
+        }).then((res) => {
+            console.log(res.body)
+        }).catch((e) => {
+            console.log(e)
+        })
+    }
+</script>
