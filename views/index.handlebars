@@ -1,17 +1,27 @@
 <div>the index</div>
 <input id="search" type="text" />
 <button id="submit" type="submit"></button>
+<div id="data"></div>
 
 <script>
 
+    let rootPath = '/api/registry'
+
     document.getElementById("submit").onclick = async () => {
         let input = await document.getElementById("search").value
-        console.log(input)
-        let req = await fetch(`/api/registry/${input}`, {
-        }).then((res) => {
-            console.log(res.body)
-        }).catch((e) => {
-            console.log(e)
-        })
+        let res = await fetch(`${rootPath}/${input}`)
+        let data = await res.json()
+
+        const obj = {
+            name: data.name,
+            desc: data.description,
+            keywords: data.keywords
+        }
+
+        for (let key in obj) {
+            let value = obj[key]
+            console.log(value)
+            let thing = document.createElement("div").innerHTML = obj[key]
+        }
     }
 </script>
