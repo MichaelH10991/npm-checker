@@ -8,7 +8,7 @@ exports.reg = async (req, res) => {
     // gets the stuff we're interested in
     let data = helper.filter(response)
 
-    return res.send(data)
+    return res.render(data)
 }
 
 
